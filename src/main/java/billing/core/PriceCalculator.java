@@ -5,6 +5,7 @@ import billing.model.Bill;
 import billing.model.User;
 import billing.promotion.Promotion;
 import billing.util.AdditionalDiscount;
+import billing.util.BillingConstants;
 
 public class PriceCalculator {
 	private User user;
@@ -17,7 +18,7 @@ public class PriceCalculator {
 	
 	public Double calculatePrice(){
 		Promotion promotion=null;
-		if(bill.getItemType()!=null){
+		if(bill.getItemType()!=null && bill.getItemType()!=BillingConstants.GROCERY){
 			promotion=PromotionFactory.getPromotion(user);
 		}
 		Double amount =bill.getAmount();
