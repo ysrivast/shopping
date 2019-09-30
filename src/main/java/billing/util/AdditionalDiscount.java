@@ -6,7 +6,7 @@ public class AdditionalDiscount {
 		return (amount -getCount(amount)*BillingConstants.DISCOUNT);
 	}
 	
-	public static Integer getCount(Double amount){
+	private static Integer getCount(Double amount){
 		return (int) (amount/BillingConstants.MULTIPLE);
 	}
 }
