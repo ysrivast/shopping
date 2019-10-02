@@ -12,13 +12,15 @@ import billing.promotion.EmployeePromotion;
 
 public class TestPromotionFactory {
 	private User user;
+
 	@Before
-	 public void setUp() {
-		user= new User(100098l, "testUser", (byte) 1, new Date());
+	public void setUp() {
+		user = new User(100098l, "testUser", (byte) 1, new Date());
 	}
-	
+
 	@Test
-	public void test_getPromotion(){
-		assertEquals(EmployeePromotion.class, PromotionFactory.getPromotion(user).getClass());
+	public void test_getPromotion() {
+		assertEquals(EmployeePromotion.class,
+				PromotionFactory.getPromotion(user).getClass());
 	}
 }

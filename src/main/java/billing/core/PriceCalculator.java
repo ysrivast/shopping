@@ -10,24 +10,25 @@ import billing.util.BillingConstants;
 public class PriceCalculator {
 	private User user;
 	private Bill bill;
+
 	public PriceCalculator(User user, Bill bill) {
 		super();
 		this.user = user;
 		this.bill = bill;
 	}
-	
-	public Double calculatePrice(){
-		Promotion promotion=null;
-		if(bill.getItemType()!=null && bill.getItemType()!=BillingConstants.GROCERY){
-			promotion=PromotionFactory.getPromotion(user);
+
+	public Double calculatePrice() {
+		Promotion promotion = null;
+		if (bill.getItemType() != null
+				&& bill.getItemType().equals(BillingConstants.GROCERY)) {
+			promotion = PromotionFactory.getPromotion(user);
 		}
-		Double amount =bill.getAmount();
-		if(promotion!=null){
-			amount =promotion.applyPromotion(bill);
+		Double amount = bill.getAmount();
+		if (promotion != null) {
+			amount = promotion.applyPromotion(bill);
 		}
-		Double finalAmount=AdditionalDiscount.bonusDiscount(amount);
-		return finalAmount;
+		return AdditionalDiscount.bonusDiscount(amount);
+
 	}
-	
 
 }
