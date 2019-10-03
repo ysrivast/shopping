@@ -4,15 +4,15 @@ this application is for calculation of checkout bill and apply promotions accord
 
 **Bill** represnt the bill entitty with amount , user and cart
 
-**Product** represnt product detail with different type
+**Product** represent product detail with different type
 
-**User** represnt customer with type and system
+**User** represent customer with type and system
 
-**PriceCalculator** is resposible to apply promotion by using Factory method of Promotion
+**PriceCalculator** is responsible to apply promotion by using Factory method of Promotion.It is implemented using Factory Design pattern which take User object and based on user it returns aplicable promotion.
 
 
 
-**Input** we pass bill object in the Price Calculator , it process the bill. Fisrt it will apply pormotion according to User.
-we have calculate total of bill by excluding Greocery item type.  and then we apply additional promotion.
+**Input** we pass bill object in the PriceCalculator , it process the bill. First it will apply promotion according to User.
+It calculates total of bill by excluding Greocery item type.  and then we apply additional promotion.
 
-**Output** we gate the actual payable price by the customer
+**Output** we get the actual payable price paid by the customer
