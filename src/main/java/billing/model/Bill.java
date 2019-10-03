@@ -1,18 +1,19 @@
 package billing.model;
 
+import java.util.List;
+
 public class Bill {
 	private String billId;
 	private Double amount;
-	private Byte itemType;
+	private List<Product> cart;
 
 	public Bill() {
 	}
 
-	public Bill(String billId, Double amount, Byte itemType) {
-		super();
+	public Bill(String billId, Double amount, List<Product> cart) {
 		this.billId = billId;
 		this.amount = amount;
-		this.itemType = itemType;
+		this.cart = cart;
 	}
 
 	public String getBillId() {
@@ -31,12 +32,40 @@ public class Bill {
 		this.amount = amount;
 	}
 
-	public Byte getItemType() {
-		return itemType;
+	public List<Product> getCart() {
+		return cart;
 	}
 
-	public void setItemType(Byte itemType) {
-		this.itemType = itemType;
+	public void setCart(List<Product> cart) {
+		this.cart = cart;
+	}
+
+	public Double getTotalAmount() {
+		double sum = 0.0;
+		for (Product product : cart) {
+			sum = +product.getUnitPrice();
+		}
+		return sum;
+	}
+
+	public Double getTotalForProduct(Byte productType) {
+		double sum = 0.0;
+		for (Product product : cart) {
+			if (productType.equals(product.getProductType())) {
+				sum = +product.getUnitPrice();
+			}
+		}
+		return sum;
+	}
+
+	public Double getTotalExceptProduct(Byte productType) {
+		double sum = 0.0;
+		for (Product product : cart) {
+			if (!productType.equals(product.getProductType())) {
+				sum = +product.getUnitPrice();
+			}
+		}
+		return sum;
 	}
 
 }

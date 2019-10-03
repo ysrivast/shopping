@@ -1,10 +1,11 @@
 package billing.factory;
 
 import billing.model.User;
-import billing.promotion.AffiliatePromotion;
-import billing.promotion.EmployeePromotion;
-import billing.promotion.OldCustomerPromotion;
 import billing.promotion.Promotion;
+import billing.promotion.impl.AffiliatePromotion;
+import billing.promotion.impl.DefaultPromotion;
+import billing.promotion.impl.EmployeePromotion;
+import billing.promotion.impl.OldCustomerPromotion;
 import billing.util.BillingConstants;
 import billing.util.DateUtility;
 
@@ -22,6 +23,6 @@ public class PromotionFactory {
 				&& DateUtility.getDiffYears(user.getCreationDate()) >= 2) {
 			return new OldCustomerPromotion();
 		}
-		return null;
+		return new DefaultPromotion();
 	}
 }

@@ -1,5 +1,6 @@
 package billing.core;
 
+import billing.exception.EmptyCartException;
 import billing.factory.PromotionFactory;
 import billing.model.Bill;
 import billing.model.User;
@@ -12,22 +13,21 @@ public class PriceCalculator {
 	private Bill bill;
 
 	public PriceCalculator(User user, Bill bill) {
-		super();
 		this.user = user;
 		this.bill = bill;
 	}
 
-	public Double calculatePrice() {
+	public Double calculatePrice() throws EmptyCartException {
 		Promotion promotion = null;
-		if (bill.getItemType() != null
-				&& bill.getItemType().equals(BillingConstants.GROCERY)) {
-			promotion = PromotionFactory.getPromotion(user);
+		if (bill.getCart() == null && bill.getCart().isEmpty()) {
+			throw new EmptyCartException("Cart is empty!!!");
 		}
-		Double amount = bill.getAmount();
-		if (promotion != null) {
-			amount = promotion.applyPromotion(bill);
-		}
-		return AdditionalDiscount.bonusDiscount(amount);
+		promotion = PromotionFactory.getPromotion(user);
+		Double amountExceptGrocery = bill
+				.getTotalExceptProduct(BillingConstants.GROCERY);
+		Double totalAmount = bill.getTotalAmount()
+				- promotion.applyPromotion(amountExceptGrocery);
+		return AdditionalDiscount.bonusDiscount(totalAmount);
 
 	}
 
