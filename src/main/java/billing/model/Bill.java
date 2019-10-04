@@ -43,7 +43,7 @@ public class Bill {
 	public Double getTotalAmount() {
 		double sum = 0.0;
 		for (Product product : cart) {
-			sum = +product.getUnitPrice();
+			sum = sum+product.getUnitPrice();
 		}
 		return sum;
 	}
@@ -62,7 +62,7 @@ public class Bill {
 		double sum = 0.0;
 		for (Product product : cart) {
 			if (!productType.equals(product.getProductType())) {
-				sum = +product.getUnitPrice();
+				sum = sum+product.getUnitPrice();
 			}
 		}
 		return sum;

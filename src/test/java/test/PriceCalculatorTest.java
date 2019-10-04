@@ -41,7 +41,7 @@ public class PriceCalculatorTest {
 
 	@Test
 	public void test_calculatePrice() throws EmptyCartException {
-		assertEquals(49.0, (double) calculator.calculatePrice(), 0.0);
+		assertEquals(141.0, (double) calculator.calculatePrice(), 0.0);
 	}
 
 	@Test
